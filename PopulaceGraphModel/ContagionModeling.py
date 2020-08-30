@@ -79,7 +79,7 @@ class PopulaceGraph:
         #load populace from file if necessary
         if populace == None:
         # for loading people objects from file
-            with open("people_list_serialized.pkl", 'rb') as file:
+            with open("PopulaceGraphModel/people_list_serialized.pkl", 'rb') as file:
                 x = pickle.load(file)
 
             # return represented by dict of dicts
@@ -132,15 +132,15 @@ class PopulaceGraph:
 
             # grow primary list,
             # adding B to A, A to B
-        attachments[nodeA]["primary"][groupB].append(nodeB)
-        attachments[nodeB]["primary"][groupA].append(nodeA)
+            attachments[nodeA]["primary"][groupB].append(nodeB)
+            attachments[nodeB]["primary"][groupA].append(nodeA)
 
         #Adding A's friends to B
 
         #Adding B to A's friends
         #Adding A to B's friends
-        try:
-            attachments[""]
+        # try:                      # dh try needs except?  This was causing next statement to not be indented correctly
+        #     attachments[""]  
     #def clusterFromMatrix(self,group, env, masking, params):
     def clusterMatrixGuidedPreferentialAttachment(self, group, M, partition, id_to_partition, avg_contacts, r,mask_p):
 
@@ -165,9 +165,9 @@ class PopulaceGraph:
             for edge in rand_edges:
                 self.graph.add_edge(edge[0], edge[1],
                                     transmission_weight=self.trans_weighter.genMaskScalar(mask_p) * weight)
-                try:
-                    partitionAttachments[]
-                except:
+                # try:
+                #     partitionAttachments[1]
+                # except:
         else:
             for i in range(random_edges):
                 sel_A = random.choice(num_people)
@@ -218,11 +218,11 @@ class PopulaceGraph:
             for edge in pos_edges:
                 if random.random()<edgeProb:
                     weight =  self.weighter.getWeight(edge[0], edge[1], env, masking)
-                    if env = None:
+                    if env == None:
                         assert(weight != None)
                     else:
-                    self.graph.add_edge(edge[0], edge[1], transmission_weight = weight, environment = env)
-                    self.total_weight += weight
+                        self.graph.add_edge(edge[0], edge[1], transmission_weight = weight, environment = env)
+                        self.total_weight += weight
         else:
             for i in range(member_count-1):
                 nodeA = group[i]
@@ -246,7 +246,7 @@ class PopulaceGraph:
                     weight = self.trans_weighter.getWeight(members[i], members[j], env, masking)
 
                 self.graph.add_edge(members[i], members[j], transmission_weight = weight, environment = env) #/ memberWeightScalar)
-                self.total_weight +=weight
+                self.total_weight += weight
 
 
     def clusterStrogatz(self, members, masking, params, env = None, weight = None, num_edges = None):
