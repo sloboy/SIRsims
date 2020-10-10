@@ -6,16 +6,17 @@ import os
 # Time stamp to identify the simulation, and the directories where the data is stored
 # Called in constructor of Partioning graph (used to be called in simulate() method
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-dstdirname = "/".join(["ge_simResults", timestamp, "src"])
-# Insecure approach
-os.system("mkdir -p %s" % dstdirname)
-try:
-    os.system("cp %s %s" % ('ge2_populace_study.py', dstdirname))
-    os.system("cp %s %s" % ('ge1_modelingToolkit.py', dstdirname))
-except:
-    os.system("copy %s %s" % ('ge2_populace_study.py', dstdirname))
-    os.system("copy %s %s" % ('ge1_modelingToolkit.py', dstdirname))
 
+# os has operating system aware functions
+# https://www.geeksforgeeks.org/python-os-mkdir-method/
+dstdirname = os.path.join(".","ge_simResults", timestamp, "src")
+os.makedirs(dstdirname)
+
+# copyfile is operating system aware too i believe
+# https://stackoverflow.com/questions/123198/how-do-i-copy-a-file-in-python
+
+copyfile ('ge2_populace_study.py',os.path.join(dstdirname,'ge2_populace_study.py'))
+copyfile ('ge1_modelingToolkit.py',os.path.join(dstdirname,'ge1_modelingToolkit.py'))
 #################################################################################
 #####   Begin setting up model variables  #######################################
 #################################################################################
