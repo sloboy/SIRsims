@@ -1,6 +1,7 @@
 from ge1_modelingToolkit import *
 import copy
 import os
+from shutil import copyfile
 # plot chance of infection
 
 # Time stamp to identify the simulation, and the directories where the data is stored
